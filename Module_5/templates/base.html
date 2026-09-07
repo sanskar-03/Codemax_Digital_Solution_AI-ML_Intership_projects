@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{% block title %}StudyForge{% endblock %}</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+{% if request.user.is_authenticated %}
+
+<header class="app-header">
+
+    <a href="{% url 'dashboard:home' %}" class="brand">
+        <div class="brand-icon">S</div>
+
+        <div>
+            <strong>StudyForge</strong>
+            <span>LEARNING INTELLIGENCE</span>
+        </div>
+    </a>
+
+    <nav class="main-nav">
+        <a href="{% url 'dashboard:home' %}">Dashboard</a>
+        <a href="{% url 'learning:subjects' %}">Learning</a>
+        <a href="{% url 'recommendations:home' %}">Priorities</a>
+        <a href="{% url 'focus:start' %}">Focus</a>
+        <a href="{% url 'quizzes:home' %}">Quizzes</a>
+        <a href="{% url 'reports:home' %}">Reports</a>
+    </nav>
+
+    <div class="user-area">
+        <div class="avatar">
+            {{ request.user.username|first|upper }}
+        </div>
+
+        <span class="username">
+            {{ request.user.username }}
+        </span>
+
+        <a
+            href="{% url 'accounts:logout' %}"
+            class="btn btn-outline btn-small"
+        >
+            Sign out
+        </a>
+    </div>
+
+</header>
+
+{% endif %}
+
+
+<main class="{% if request.user.is_authenticated %}app-main{% endif %}">
+    {% block content %}{% endblock %}
+</main>
+
+
+<script src="{% static 'js/app.js' %}"></script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

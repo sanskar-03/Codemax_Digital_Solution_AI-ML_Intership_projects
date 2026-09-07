@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell">
+
+    <section class="page-heading">
+
+        <div>
+            <div class="eyebrow">
+                <span></span>
+                KNOWLEDGE CHECKS
+            </div>
+
+            <h1>Test what you know.</h1>
+
+            <p>
+                Complete quick knowledge checks and use
+                the results to guide your next learning step.
+            </p>
+        </div>
+
+    </section>
+
+
+    <div class="subject-grid">
+
+        {% for topic in topics %}
+
+        <article class="subject-card">
+
+            <span class="subject-index">
+                {{ topic.difficulty|upper }}
+            </span>
+
+            <h2>{{ topic.title }}</h2>
+
+            <p>
+                {{ topic.subject.name }}
+            </p>
+
+            <div class="subject-footer">
+
+                <span>
+                    Knowledge check
+                </span>
+
+                <a
+                    href="{% url 'quizzes:take' topic.id %}"
+                    class="btn btn-primary btn-small"
+                >
+                    Start →
+                </a>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="empty-state">
+            <h2>Add topics first.</h2>
+
+            <p>
+                Quizzes are generated from your learning topics.
+            </p>
+
+            <a
+                href="{% url 'learning:subjects' %}"
+                class="btn btn-primary"
+            >
+                Open learning →
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

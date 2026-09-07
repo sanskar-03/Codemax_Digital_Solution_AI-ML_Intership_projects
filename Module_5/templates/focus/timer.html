@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="timer-page">
+
+    <div class="timer-card">
+
+        <div class="eyebrow">
+            <span></span>
+            ACTIVE FOCUS SESSION
+        </div>
+
+        <h1>
+            {% if session.topic %}
+                {{ session.topic.title }}
+            {% else %}
+                Focus session
+            {% endif %}
+        </h1>
+
+        <p>
+            Stay with one task until the session is complete.
+        </p>
+
+        <div
+            class="timer"
+            id="timer"
+            data-minutes="{{ session.minutes }}"
+        >
+            {{ session.minutes }}:00
+        </div>
+
+        <div class="timer-actions">
+
+            <button
+                class="btn btn-outline"
+                id="pauseButton"
+                type="button"
+            >
+                Pause
+            </button>
+
+            <a
+                href="{% url 'focus:complete' session.id %}"
+                class="btn btn-primary"
+            >
+                Complete session →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/timer.js' %}"></script>
+{% endblock %}

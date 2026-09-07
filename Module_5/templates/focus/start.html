@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell narrow-shell">
+
+    <section class="form-page-heading">
+
+        <div class="eyebrow">
+            <span></span>
+            FOCUS SESSION
+        </div>
+
+        <h1>Choose one thing.</h1>
+
+        <p>
+            Turn your next learning priority into
+            a dedicated focus session.
+        </p>
+
+    </section>
+
+    <form method="post" class="form-card app-form">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="btn btn-primary btn-full">
+            Start focus session →
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

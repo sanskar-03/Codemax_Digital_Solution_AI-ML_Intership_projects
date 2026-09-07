@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell narrow-shell">
+
+    <section class="form-page-heading">
+
+        <div class="eyebrow">
+            <span></span>
+            STUDY ASSISTANT
+        </div>
+
+        <h1>Ask about what you are learning.</h1>
+
+        <p>
+            Select a topic and ask for an explanation,
+            example, revision plan or practice guidance.
+        </p>
+
+    </section>
+
+
+    <form method="post" class="form-card app-form">
+
+        {% csrf_token %}
+
+        <p>
+
+            <label>Current topic</label>
+
+            <select name="topic">
+
+                <option value="">
+                    General learning question
+                </option>
+
+                {% for topic in topics %}
+
+                <option value="{{ topic.id }}">
+                    {{ topic.title }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </p>
+
+        <p>
+
+            <label>Your question</label>
+
+            <textarea
+                name="prompt"
+                rows="6"
+                placeholder="For example: Explain this topic simply and give me a practical example."
+            ></textarea>
+
+        </p>
+
+        <button class="btn btn-primary btn-full">
+            Generate guidance →
+        </button>
+
+    </form>
+
+
+    {% if response_data %}
+
+    <section class="assistant-response">
+
+        <div class="eyebrow">
+            <span></span>
+            STUDY GUIDANCE
+        </div>
+
+        <h2>{{ response_data.title }}</h2>
+
+        <div class="response-text">
+            {{ response_data.response|linebreaks }}
+        </div>
+
+    </section>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

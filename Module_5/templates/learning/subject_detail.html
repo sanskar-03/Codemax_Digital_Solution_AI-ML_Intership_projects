@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell">
+
+    <section class="page-heading">
+
+        <div>
+
+            <a
+                href="{% url 'learning:subjects' %}"
+                class="back-link"
+            >
+                ← All subjects
+            </a>
+
+            <div class="eyebrow">
+                <span></span>
+                LEARNING ROADMAP
+            </div>
+
+            <h1>{{ subject.name }}</h1>
+
+            <p>
+                {{ subject.description|default:"Build your progress one topic at a time." }}
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'learning:create_topic' subject.id %}"
+            class="btn btn-primary"
+        >
+            + Add topic
+        </a>
+
+    </section>
+
+
+    <section class="topic-list">
+
+        {% for topic in topics %}
+
+        <article class="topic-card">
+
+            <div class="topic-progress">
+                {{ topic.progress }}%
+            </div>
+
+            <div class="topic-content">
+
+                <div class="topic-topline">
+                    <span class="status-badge {{ topic.status }}">
+                        {{ topic.get_status_display }}
+                    </span>
+
+                    <span>
+                        {{ topic.estimated_minutes }} min
+                    </span>
+                </div>
+
+                <h2>{{ topic.title }}</h2>
+
+                <p>
+                    {{ topic.description|default:"Continue learning this topic." }}
+                </p>
+
+                <div class="topic-actions">
+
+                    <a
+                        href="{% url 'focus:start' %}"
+                        class="btn btn-outline btn-small"
+                    >
+                        Focus
+                    </a>
+
+                    <a
+                        href="{% url 'quizzes:take' topic.id %}"
+                        class="btn btn-outline btn-small"
+                    >
+                        Quiz
+                    </a>
+
+                    {% if topic.status != "completed" %}
+                    <a
+                        href="{% url 'learning:complete_topic' topic.id %}"
+                        class="btn btn-primary btn-small"
+                    >
+                        Complete →
+                    </a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="empty-state">
+            <h2>No topics yet.</h2>
+
+            <p>
+                Break this subject into smaller learning steps.
+            </p>
+
+            <a
+                href="{% url 'learning:create_topic' subject.id %}"
+                class="btn btn-primary"
+            >
+                Add first topic →
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</div>
+
+{% endblock %}

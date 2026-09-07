@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — StudyForge{% endblock %}
+
+{% block content %}
+
+<div class="page-shell">
+
+    <section class="page-heading">
+
+        <div>
+            <div class="eyebrow">
+                <span></span>
+                YOUR LEARNING WORKSPACE
+            </div>
+
+            <h1>
+                Good to see you,
+                {{ request.user.username }}.
+            </h1>
+
+            <p>
+                Keep moving forward with one meaningful
+                learning step at a time.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'learning:create_subject' %}"
+            class="btn btn-primary"
+        >
+            + New subject
+        </a>
+
+    </section>
+
+
+    <section class="metric-grid">
+
+        <article class="metric-card">
+            <small>SUBJECTS</small>
+            <strong>{{ subjects.count }}</strong>
+            <span>Active learning areas</span>
+        </article>
+
+        <article class="metric-card">
+            <small>TOPICS</small>
+            <strong>{{ total_topics }}</strong>
+            <span>{{ completed_topics }} completed</span>
+        </article>
+
+        <article class="metric-card">
+            <small>FOCUS TIME</small>
+            <strong>{{ focus_minutes }}</strong>
+            <span>Minutes completed</span>
+        </article>
+
+        <article class="metric-card">
+            <small>PROGRESS</small>
+            <strong>{{ progress }}%</strong>
+            <span>Across your topics</span>
+        </article>
+
+    </section>
+
+
+    {% if next_item %}
+
+    <section class="next-focus">
+
+        <div class="next-copy">
+
+            <div class="eyebrow">
+                <span></span>
+                RECOMMENDED NEXT STEP
+            </div>
+
+            <h2>
+                {{ next_item.topic.title }}
+            </h2>
+
+            <p>
+                {{ next_item.topic.description|default:"Continue building progress on this topic." }}
+            </p>
+
+            <div class="next-meta">
+                <span>
+                    Priority score
+                    <strong>{{ next_item.score }}/100</strong>
+                </span>
+
+                <span>
+                    Estimated
+                    <strong>{{ next_item.topic.estimated_minutes }} min</strong>
+                </span>
+            </div>
+
+            <div class="button-row">
+                <a
+                    href="{% url 'focus:start' %}"
+                    class="btn btn-primary"
+                >
+                    Start focus session →
+                </a>
+
+                <a
+                    href="{% url 'recommendations:home' %}"
+                    class="btn btn-outline"
+                >
+                    View priorities
+                </a>
+            </div>
+
+        </div>
+
+        <div class="priority-score">
+            <span>{{ next_item.score }}</span>
+            <small>PRIORITY SCORE</small>
+        </div>
+
+    </section>
+
+    {% else %}
+
+    <section class="empty-state">
+        <div class="empty-icon">+</div>
+
+        <h2>Your workspace is ready.</h2>
+
+        <p>
+            Create your first subject, add topics,
+            and StudyForge will help organize your next steps.
+        </p>
+
+        <a
+            href="{% url 'learning:create_subject' %}"
+            class="btn btn-primary"
+        >
+            Create first subject →
+        </a>
+    </section>
+
+    {% endif %}
+
+
+    <section class="content-section">
+
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow">
+                    <span></span>
+                    LEARNING AREAS
+                </div>
+
+                <h2>Your subjects</h2>
+            </div>
+
+            <a href="{% url 'learning:subjects' %}" class="text-link">
+                View all →
+            </a>
+        </div>
+
+
+        <div class="subject-grid">
+
+            {% for subject in subjects %}
+
+            <a
+                href="{% url 'learning:subject_detail' subject.id %}"
+                class="subject-card"
+            >
+                <span class="subject-index">
+                    0{{ forloop.counter }}
+                </span>
+
+                <h3>{{ subject.name }}</h3>
+
+                <p>
+                    {{ subject.goal|default:"Learning workspace" }}
+                </p>
+
+                <div class="subject-footer">
+                    <span>
+                        {{ subject.topics.count }} topics
+                    </span>
+
+                    <strong>Open →</strong>
+                </div>
+            </a>
+
+            {% empty %}
+
+            <div class="empty-inline">
+                No subjects created yet.
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

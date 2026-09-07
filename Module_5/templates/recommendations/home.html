@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell">
+
+    <section class="page-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                <span></span>
+                SMART PRIORITIES
+            </div>
+
+            <h1>What should you work on next?</h1>
+
+            <p>
+                Your topics are ranked using progress,
+                priority, difficulty and deadline urgency.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="recommendation-list">
+
+        {% for item in recommendations %}
+
+        <article class="recommendation-card">
+
+            <div class="rank">
+                0{{ forloop.counter }}
+            </div>
+
+            <div class="recommendation-main">
+
+                <div class="eyebrow">
+                    <span></span>
+                    {{ item.topic.subject.name|upper }}
+                </div>
+
+                <h2>{{ item.topic.title }}</h2>
+
+                <p>
+                    {{ item.topic.description|default:"Continue making progress on this learning topic." }}
+                </p>
+
+                <div class="recommendation-meta">
+
+                    <span>
+                        {{ item.topic.estimated_minutes }} min
+                    </span>
+
+                    <span>
+                        {{ item.topic.get_difficulty_display }}
+                    </span>
+
+                    <span>
+                        {{ item.topic.progress }}% complete
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="recommendation-score">
+
+                <strong>
+                    {{ item.score }}
+                </strong>
+
+                <small>PRIORITY</small>
+
+                <a
+                    href="{% url 'focus:start' %}"
+                    class="btn btn-primary btn-small"
+                >
+                    Focus →
+                </a>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <section class="empty-state">
+
+            <h2>No recommendations yet.</h2>
+
+            <p>
+                Add subjects and learning topics to generate
+                your priority list.
+            </p>
+
+            <a
+                href="{% url 'learning:create_subject' %}"
+                class="btn btn-primary"
+            >
+                Create subject →
+            </a>
+
+        </section>
+
+        {% endfor %}
+
+    </section>
+
+</div>
+
+{% endblock %}

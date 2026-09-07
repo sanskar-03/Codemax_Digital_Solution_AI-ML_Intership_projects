@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block title %}StudyForge — Learn with direction{% endblock %}
+
+{% block content %}
+
+<section class="landing">
+
+    <header class="landing-nav">
+
+        <a href="{% url 'home' %}" class="brand">
+            <div class="brand-icon">S</div>
+
+            <div>
+                <strong>StudyForge</strong>
+                <span>LEARNING INTELLIGENCE</span>
+            </div>
+        </a>
+
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it works</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <a
+                href="{% url 'accounts:login' %}"
+                class="btn btn-outline"
+            >
+                Sign in
+            </a>
+
+            <a
+                href="{% url 'accounts:register' %}"
+                class="btn btn-primary"
+            >
+                Get started
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div class="hero-copy">
+
+            <div class="eyebrow">
+                <span></span>
+                PERSONAL LEARNING WORKSPACE
+            </div>
+
+            <h1>
+                Learn with direction.
+                <br>
+                <span>Progress with purpose.</span>
+            </h1>
+
+            <p>
+                StudyForge brings your subjects, topics, focus sessions,
+                quizzes and learning priorities into one intelligent
+                workspace.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    href="{% url 'accounts:register' %}"
+                    class="btn btn-primary btn-large"
+                >
+                    Build your learning plan →
+                </a>
+
+                <a
+                    href="#features"
+                    class="text-link"
+                >
+                    Explore the workspace
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-panel">
+
+            <div class="panel-header">
+                <span class="live-dot"></span>
+                TODAY'S LEARNING PLAN
+            </div>
+
+            <div class="score-row">
+
+                <div>
+                    <small>LEARNING SCORE</small>
+                    <strong>87<span>/100</span></strong>
+                </div>
+
+                <div class="score-ring">
+                    <span>87%</span>
+                </div>
+
+            </div>
+
+            <p class="panel-text">
+                Your strongest progress comes from completing one
+                meaningful topic at a time.
+            </p>
+
+            <div class="task-preview active-preview">
+                <div class="task-number">01</div>
+
+                <div>
+                    <strong>Python dictionaries</strong>
+                    <small>HIGH PRIORITY · 50 MIN</small>
+                </div>
+
+                <span>FOCUS</span>
+            </div>
+
+            <div class="task-preview">
+                <div class="task-number">02</div>
+
+                <div>
+                    <strong>Practice data structures</strong>
+                    <small>MEDIUM PRIORITY · 30 MIN</small>
+                </div>
+
+                <span>NEXT</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats-strip">
+
+        <div>
+            <strong>Plan</strong>
+            <span>Build structured learning paths</span>
+        </div>
+
+        <div>
+            <strong>Focus</strong>
+            <span>Turn plans into deep work sessions</span>
+        </div>
+
+        <div>
+            <strong>Measure</strong>
+            <span>Track improvement over time</span>
+        </div>
+
+    </section>
+
+
+    <section id="features" class="feature-section">
+
+        <div class="section-intro">
+            <div class="eyebrow">
+                <span></span>
+                EVERYTHING CONNECTED
+            </div>
+
+            <h2>
+                One system for the entire
+                learning process.
+            </h2>
+        </div>
+
+        <div class="feature-grid">
+
+            <article class="feature-card">
+                <div class="feature-icon">01</div>
+                <h3>Learning roadmap</h3>
+                <p>
+                    Organize subjects into topics and track progress
+                    without losing sight of the bigger goal.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">02</div>
+                <h3>Smart priorities</h3>
+                <p>
+                    Identify what deserves attention using priority,
+                    deadlines and current progress.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">03</div>
+                <h3>Focused study</h3>
+                <p>
+                    Turn your next priority into a dedicated,
+                    distraction-free focus session.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">04</div>
+                <h3>Knowledge checks</h3>
+                <p>
+                    Test what you have learned and use the results
+                    to guide your next study session.
+                </p>
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <section id="how-it-works" class="workflow-section">
+
+        <div class="section-intro">
+            <div class="eyebrow">
+                <span></span>
+                SIMPLE WORKFLOW
+            </div>
+
+            <h2>
+                From a learning goal
+                to measurable progress.
+            </h2>
+        </div>
+
+        <div class="workflow">
+
+            <div>
+                <span>01</span>
+                <h3>Create a subject</h3>
+                <p>Add your learning goal and deadline.</p>
+            </div>
+
+            <div>
+                <span>02</span>
+                <h3>Break it into topics</h3>
+                <p>Create manageable learning steps.</p>
+            </div>
+
+            <div>
+                <span>03</span>
+                <h3>Focus on the next step</h3>
+                <p>Use recommendations and focus sessions.</p>
+            </div>
+
+            <div>
+                <span>04</span>
+                <h3>Measure improvement</h3>
+                <p>Track quizzes, progress and study time.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="landing-cta">
+
+        <div>
+            <div class="eyebrow">
+                <span></span>
+                READY TO START
+            </div>
+
+            <h2>
+                Stop wondering what to study next.
+            </h2>
+
+            <p>
+                Create your workspace and start building
+                consistent learning habits.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'accounts:register' %}"
+            class="btn btn-primary btn-large"
+        >
+            Create free workspace →
+        </a>
+
+    </section>
+
+
+    <footer class="landing-footer">
+        <span>© StudyForge</span>
+        <span>Plan · Focus · Improve</span>
+    </footer>
+
+</section>
+
+{% endblock %}

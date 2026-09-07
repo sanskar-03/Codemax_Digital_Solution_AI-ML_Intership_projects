@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Create account — StudyForge{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <a href="{% url 'home' %}" class="auth-brand brand">
+        <div class="brand-icon">S</div>
+
+        <div>
+            <strong>StudyForge</strong>
+            <span>LEARNING INTELLIGENCE</span>
+        </div>
+    </a>
+
+    <div class="auth-card">
+
+        <div class="eyebrow">
+            <span></span>
+            START YOUR WORKSPACE
+        </div>
+
+        <h1>Build better learning habits.</h1>
+
+        <p>
+            Create your account and organize everything
+            you want to learn.
+        </p>
+
+        <form method="post" class="app-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="btn btn-primary btn-full">
+                Create workspace →
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            Already have an account?
+            <a href="{% url 'accounts:login' %}">
+                Sign in
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

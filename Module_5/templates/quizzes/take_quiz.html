@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell narrow-shell">
+
+    <section class="form-page-heading">
+
+        <div class="eyebrow">
+            <span></span>
+            KNOWLEDGE CHECK
+        </div>
+
+        <h1>{{ topic.title }}</h1>
+
+        <p>
+            Answer the questions and review your result.
+        </p>
+
+    </section>
+
+
+    <form method="post" class="quiz-card">
+
+        {% csrf_token %}
+
+        {% for item in questions %}
+
+        <div class="quiz-question">
+
+            <span>
+                QUESTION {{ forloop.counter }}
+            </span>
+
+            <h3>{{ item.question }}</h3>
+
+            {% for option in item.options %}
+
+            <label class="quiz-option">
+
+                <input
+                    type="radio"
+                    name="q{{ forloop.parentloop.counter0 }}"
+                    value="{{ option }}"
+                    required
+                >
+
+                <span>{{ option }}</span>
+
+            </label>
+
+            {% endfor %}
+
+        </div>
+
+        {% endfor %}
+
+        <button class="btn btn-primary btn-full">
+            Submit answers →
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

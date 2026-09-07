@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell">
+
+    <section class="page-heading">
+
+        <div>
+            <div class="eyebrow">
+                <span></span>
+                LEARNING ROADMAP
+            </div>
+
+            <h1>Everything you are learning.</h1>
+
+            <p>
+                Create subjects, break them into topics,
+                and track progress from one workspace.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'learning:create_subject' %}"
+            class="btn btn-primary"
+        >
+            + New subject
+        </a>
+
+    </section>
+
+
+    <div class="subject-grid large-grid">
+
+        {% for subject in subjects %}
+
+        <a
+            href="{% url 'learning:subject_detail' subject.id %}"
+            class="subject-card"
+        >
+
+            <span class="subject-index">
+                0{{ forloop.counter }}
+            </span>
+
+            <h2>{{ subject.name }}</h2>
+
+            <p>
+                {{ subject.description|default:"Build your learning roadmap." }}
+            </p>
+
+            {% if subject.deadline %}
+            <small>
+                Deadline: {{ subject.deadline }}
+            </small>
+            {% endif %}
+
+            <div class="subject-footer">
+                <span>
+                    {{ subject.topics.count }} topics
+                </span>
+
+                <strong>Open →</strong>
+            </div>
+
+        </a>
+
+        {% empty %}
+
+        <section class="empty-state">
+            <h2>Start your first learning roadmap.</h2>
+
+            <p>
+                Add a subject and turn a large learning goal
+                into manageable topics.
+            </p>
+
+            <a
+                href="{% url 'learning:create_subject' %}"
+                class="btn btn-primary"
+            >
+                Create subject →
+            </a>
+        </section>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell narrow-shell">
+
+    <section class="result-card">
+
+        <div class="eyebrow">
+            <span></span>
+            QUIZ COMPLETE
+        </div>
+
+        <h1>
+            {{ attempt.percentage }}%
+        </h1>
+
+        <h2>
+            {{ attempt.score }} / {{ attempt.total_questions }}
+            correct
+        </h2>
+
+        {% if attempt.percentage >= 70 %}
+
+        <p>
+            Strong result. Keep practicing and continue
+            building on this topic.
+        </p>
+
+        {% else %}
+
+        <p>
+            This topic needs another review. A focused
+            study session is recommended.
+        </p>
+
+        {% endif %}
+
+        <div class="button-row">
+
+            <a
+                href="{% url 'focus:start' %}"
+                class="btn btn-primary"
+            >
+                Start focus →
+            </a>
+
+            <a
+                href="{% url 'recommendations:home' %}"
+                class="btn btn-outline"
+            >
+                View priorities
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

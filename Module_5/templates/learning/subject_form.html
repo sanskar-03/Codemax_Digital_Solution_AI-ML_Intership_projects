@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell narrow-shell">
+
+    <section class="form-page-heading">
+        <div class="eyebrow">
+            <span></span>
+            NEW LEARNING AREA
+        </div>
+
+        <h1>Create a subject.</h1>
+
+        <p>
+            Start with what you want to learn and the goal
+            you are working toward.
+        </p>
+    </section>
+
+    <form method="post" class="form-card app-form">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div class="button-row">
+            <button class="btn btn-primary">
+                Create subject →
+            </button>
+
+            <a
+                href="{% url 'learning:subjects' %}"
+                class="btn btn-outline"
+            >
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

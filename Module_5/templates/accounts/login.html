@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Sign in — StudyForge{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <a href="{% url 'home' %}" class="auth-brand brand">
+        <div class="brand-icon">S</div>
+
+        <div>
+            <strong>StudyForge</strong>
+            <span>LEARNING INTELLIGENCE</span>
+        </div>
+    </a>
+
+    <div class="auth-card">
+
+        <div class="eyebrow">
+            <span></span>
+            WELCOME BACK
+        </div>
+
+        <h1>Continue your progress.</h1>
+
+        <p>
+            Sign in to access your learning workspace.
+        </p>
+
+        <form method="post" class="app-form">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="btn btn-primary btn-full">
+                Sign in →
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            New to StudyForge?
+            <a href="{% url 'accounts:register' %}">
+                Create an account
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

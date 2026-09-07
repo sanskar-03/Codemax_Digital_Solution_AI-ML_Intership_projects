@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-shell">
+
+    <section class="page-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                <span></span>
+                LEARNING INSIGHTS
+            </div>
+
+            <h1>Measure what is improving.</h1>
+
+            <p>
+                Review focus time, knowledge checks
+                and progress across your learning topics.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="metric-grid">
+
+        <article class="metric-card">
+
+            <small>FOCUS TIME</small>
+
+            <strong>{{ total_minutes }}</strong>
+
+            <span>Total minutes completed</span>
+
+        </article>
+
+        <article class="metric-card">
+
+            <small>FOCUS SESSIONS</small>
+
+            <strong>{{ sessions }}</strong>
+
+            <span>Completed sessions</span>
+
+        </article>
+
+        <article class="metric-card">
+
+            <small>QUIZZES</small>
+
+            <strong>{{ quiz_attempts }}</strong>
+
+            <span>Knowledge checks completed</span>
+
+        </article>
+
+        <article class="metric-card">
+
+            <small>AVERAGE SCORE</small>
+
+            <strong>{{ average_score }}%</strong>
+
+            <span>Across completed quizzes</span>
+
+        </article>
+
+    </section>
+
+
+    <section class="content-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    <span></span>
+                    TOPIC PROGRESS
+                </div>
+
+                <h2>Current learning progress</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-report">
+
+            {% for topic in topics %}
+
+            <div class="progress-row">
+
+                <div class="progress-title">
+
+                    <strong>{{ topic.name }}</strong>
+
+                    <span>{{ topic.progress }}%</span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width: {{ topic.progress }}%"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="empty-inline">
+                No learning data available yet.
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
