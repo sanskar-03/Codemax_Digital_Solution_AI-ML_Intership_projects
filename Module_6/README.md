@@ -36,11 +36,11 @@ run_local.bat
 .venv\Scripts\python.exe manage.py createsuperuser
 ```
 
-## Train the first model
+## 🤖 Machine Learning Model Training (Module 6)
+TravelShield uses an automated Scikit-Learn risk classification pipeline. You can retrain the model locally using the custom management command:
 
-```powershell
-.venv\Scripts\python.exe manage.py train_risk_model --version 1.0.0 --activate
-```
+```bash
+python manage.py train_risk_model
 
 ## Run
 
