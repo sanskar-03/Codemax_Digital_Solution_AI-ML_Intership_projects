@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}TravelShield — Travel risk intelligence{% endblock %}{% block content %}
+<section class="landing-hero"><div class="container hero-grid">
+<div><p class="eyebrow">TRAVEL INTELLIGENCE PLATFORM</p><h1>Know the risk<br>before you go.</h1><p class="hero-description">TravelShield evaluates weather exposure, disruption, crowding, transport reliability and trip context to give every journey a clear risk profile.</p>
+<div class="hero-actions"><a class="button button-primary" href="{% url 'register' %}">Start a trip assessment</a><a class="button button-secondary" href="{% url 'login' %}">Sign in</a></div>
+<div class="hero-proof"><span>Risk scoring</span><span>Versioned ML model</span><span>Actionable guidance</span></div></div>
+<div class="risk-preview"><div class="preview-top"><span>TRIP READINESS</span><strong>82<span>/100</span></strong><em>Good to travel with attention to route conditions</em></div>
+<div class="signal"><span>Weather exposure</span><b class="low">LOW</b><i style="--value:22%"></i></div><div class="signal"><span>Budget pressure</span><b class="medium">MEDIUM</b><i style="--value:51%"></i></div><div class="signal"><span>Route disruption</span><b class="high">HIGH</b><i style="--value:78%"></i></div>
+<div class="recommendation"><small>RECOMMENDED ACTION</small><p>Review departure timing and keep flexibility for route disruption.</p></div></div></div></section>
+<section class="container section"><div class="section-heading"><p class="eyebrow">HOW IT WORKS</p><h2>From trip details to a decision you can use.</h2></div><div class="feature-grid"><article><span>01</span><h3>Describe the trip</h3><p>Enter your route, duration, budget and travel conditions.</p></article><article><span>02</span><h3>Evaluate exposure</h3><p>Travel factors are mapped into the active versioned risk model.</p></article><article><span>03</span><h3>Act on the result</h3><p>Review risk, confidence, major pressure points and your report.</p></article></div></section>
+<section class="container section dark-band"><div><p class="eyebrow">BUILT FOR BETTER DECISIONS</p><h2>Prediction is only useful when it leads to a better plan.</h2></div><a class="button button-light" href="{% url 'register' %}">Create your first assessment</a></section>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block brand %}TravelShield{% endblock %}
+{% block section %}Risk overview{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <h1>Travel risk operations.</h1>
+
+    <p>
+        Record travel conditions, assess disruption
+        exposure, track model versions, and maintain
+        a clear assessment history.
+    </p>
+
+    <a class="button" href="/workspace/">
+        Create assessment
+    </a>
+</section>
+
+<div class="grid">
+
+    <div class="card">
+        Total assessments
+        <span class="metric">{{ total }}</span>
+    </div>
+
+    <div class="card">
+        High-risk assessments
+        <span class="metric">{{ high }}</span>
+    </div>
+
+    <div class="card">
+        Active model
+        <span class="metric">
+            {% if active_model %}
+                {{ active_model.version }}
+            {% else %}
+                —
+            {% endif %}
+        </span>
+    </div>
+
+</div>
+
+<section class="panel">
+    <h2>Recent assessments</h2>
+
+    {% for item in recent %}
+        <p>
+            <a href="/assessment/{{ item.id }}/">
+                {{ item.origin }} → {{ item.destination }}
+            </a>
+
+            <span class="tag">
+                {{ item.risk_level }}
+            </span>
+        </p>
+    {% empty %}
+        <p>No assessments have been created yet.</p>
+    {% endfor %}
+</section>
+
+{% endblock %}

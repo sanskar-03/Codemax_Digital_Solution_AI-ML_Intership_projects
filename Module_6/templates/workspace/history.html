@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}
+My trips · TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="shell page-section">
+
+    <div class="section-line">
+
+        <div>
+
+            <p class="kicker">
+                ASSESSMENT HISTORY
+            </p>
+
+            <h1>
+                Every trip, one clear record.
+            </h1>
+
+            <p>
+                Review previous travel risk decisions
+                and reopen any assessment.
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'workspace' %}"
+            class="button primary"
+        >
+            + New assessment
+        </a>
+
+    </div>
+
+
+    {% if assessments %}
+
+        <div class="history-table">
+
+            <div class="table-head">
+
+                <span>ROUTE</span>
+                <span>RISK</span>
+                <span>CONFIDENCE</span>
+                <span>MODEL</span>
+                <span></span>
+
+            </div>
+
+
+            {% for a in assessments %}
+
+                <a
+                    class="table-row"
+                    href="{% url 'assessment_detail' a.pk %}"
+                >
+
+                    <div>
+
+                        <strong>
+
+                            {{ a.origin }}
+                            →
+                            {{ a.destination }}
+
+                        </strong>
+
+                        <small>
+
+                            {{ a.duration_days }} days
+                            ·
+                            {{ a.created_at|date:"d M Y, H:i" }}
+
+                        </small>
+
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="risk {{ a.risk_level|lower }}"
+                        >
+                            {{ a.risk_level }}
+                        </span>
+
+                    </div>
+
+
+                    <div>
+                        {{ a.confidence|floatformat:1 }}%
+                    </div>
+
+
+                    <div>
+
+                        {% if a.model_version %}
+
+                            {{ a.model_version.version }}
+
+                        {% else %}
+
+                            —
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div>
+                        Open →
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ✦
+            </div>
+
+            <h3>
+                Your trip history is empty
+            </h3>
+
+            <p>
+
+                Completed assessments will appear here
+                with their risk result and model version.
+
+            </p>
+
+            <a
+                href="{% url 'workspace' %}"
+                class="button primary"
+            >
+                Create first assessment
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

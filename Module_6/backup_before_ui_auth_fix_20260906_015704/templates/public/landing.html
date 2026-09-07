@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}TravelShield | Travel Risk Intelligence{% endblock %}{% block content %}
+<section class="landing"><header><strong>TravelShield</strong><span><a href="{% url 'login' %}">Sign in</a> <a class="btn" href="{% url 'register' %}">Create account</a></span></header>
+<div class="hero"><div><p class="eyebrow">TRAVEL RISK INTELLIGENCE</p><h1>Plan with context, not assumptions.</h1><p>Evaluate weather exposure, crowd pressure, transport reliability, trip duration and seasonal conditions through a structured travel risk workflow.</p><a class="btn" href="{% url 'register' %}">Start an assessment</a></div>
+<div class="workflow"><b>ASSESSMENT WORKFLOW</b><p>Trip information</p><i>↓</i><p>Feature mapping</p><i>↓</i><p>Versioned risk model</p><i>↓</i><p>Assessment and report</p></div></div>
+<div class="features"><article><b>01</b><h3>Structured assessment</h3><p>Capture trip context consistently.</p></article><article><b>02</b><h3>Versioned model</h3><p>Track the model used for each result.</p></article><article><b>03</b><h3>Exportable result</h3><p>Review history and generate reports.</p></article></div></section>{% endblock %}

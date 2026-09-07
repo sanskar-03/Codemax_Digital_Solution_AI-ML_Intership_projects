@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block title %}
+TravelShield · Travel smarter
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="shell hero-grid">
+
+        <div>
+
+            <p class="kicker">
+                TRAVEL RISK INTELLIGENCE
+            </p>
+
+            <h1>
+                Know the trip before you take it.
+            </h1>
+
+            <p class="lead">
+
+                TravelShield helps you understand
+                weather exposure, crowd pressure,
+                transport reliability and other
+                travel risks before your journey.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="{% url 'register' %}"
+                    class="button primary"
+                >
+                    Assess a trip
+                </a>
+
+                <a
+                    href="#how-it-works"
+                    class="button secondary"
+                >
+                    See how it works
+                </a>
+
+            </div>
+
+
+            <div class="trust-row">
+
+                <span>
+                    Clear scores
+                </span>
+
+                <span>
+                    Simple guidance
+                </span>
+
+                <span>
+                    Saved trip history
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sample-card">
+
+            <div class="sample-top">
+
+                <span>
+                    EXAMPLE TRIP
+                </span>
+
+                <b>
+                    Delhi → Manali
+                </b>
+
+            </div>
+
+
+            <div class="sample-score">
+
+                <strong>
+                    82
+                </strong>
+
+                <span>
+                    /100
+                    <br>
+                    trip confidence
+                </span>
+
+            </div>
+
+
+            <div class="signal">
+
+                <span>
+                    Weather
+                </span>
+
+                <div>
+                    <i style="width:25%"></i>
+                </div>
+
+                <b>
+                    Low
+                </b>
+
+            </div>
+
+
+            <div class="signal">
+
+                <span>
+                    Crowds
+                </span>
+
+                <div>
+                    <i style="width:52%"></i>
+                </div>
+
+                <b>
+                    Medium
+                </b>
+
+            </div>
+
+
+            <div class="signal">
+
+                <span>
+                    Route
+                </span>
+
+                <div>
+                    <i style="width:75%"></i>
+                </div>
+
+                <b>
+                    High
+                </b>
+
+            </div>
+
+
+            <p class="sample-note">
+
+                Your trip looks possible.
+                Leaving earlier may reduce
+                congestion and travel pressure.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    id="how-it-works"
+    class="section shell"
+>
+
+    <div class="section-heading">
+
+        <p class="kicker">
+            HOW IT WORKS
+        </p>
+
+        <h2>
+            Three simple steps.
+        </h2>
+
+        <p>
+            You do not need to understand
+            machine learning. Just describe
+            your trip.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <article class="feature-card">
+
+            <span>01</span>
+
+            <h3>
+                Tell us about your trip
+            </h3>
+
+            <p>
+                Add your route, duration,
+                budget and expected conditions.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card">
+
+            <span>02</span>
+
+            <h3>
+                Get your risk picture
+            </h3>
+
+            <p>
+                TravelShield evaluates
+                the important conditions
+                around your journey.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card">
+
+            <span>03</span>
+
+            <h3>
+                Plan with clarity
+            </h3>
+
+            <p>
+                Understand what influenced
+                your result and review
+                your trip later.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="section muted">
+
+    <div class="shell">
+
+        <div class="section-heading">
+
+            <p class="kicker">
+                WHAT IS CHECKED
+            </p>
+
+            <h2>
+                One trip. A clearer picture.
+            </h2>
+
+        </div>
+
+
+        <div class="risk-grid">
+
+            <div>Weather exposure</div>
+
+            <div>Transport disruption</div>
+
+            <div>Destination crowding</div>
+
+            <div>Trip duration</div>
+
+            <div>Seasonal conditions</div>
+
+            <div>Overall trip risk</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="cta-section">
+
+    <div class="shell cta-box">
+
+        <div>
+
+            <p class="kicker">
+                READY TO PLAN?
+            </p>
+
+            <h2>
+                Make your next travel decision
+                with more context.
+            </h2>
+
+        </div>
+
+
+        <a
+            href="{% url 'register' %}"
+            class="button light"
+        >
+            Create account
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

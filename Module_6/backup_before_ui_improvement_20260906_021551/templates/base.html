@@ -1,0 +1,15 @@
+{% load static %}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}TravelShield{% endblock %}</title><link rel="stylesheet" href="{% static 'app.css' %}"></head>
+<body>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="{% url 'landing' %}"><span class="brand-mark">TS</span><span>TravelShield</span></a>
+<nav class="main-nav">{% if user.is_authenticated %}
+<a href="{% url 'home' %}">Dashboard</a><a href="{% url 'workspace' %}">Plan & assess</a><a href="{% url 'assessment_history' %}">My trips</a>
+{% if user.is_staff %}<a href="/admin/">Administration</a>{% endif %}
+<form method="post" action="{% url 'logout' %}" class="logout-form">{% csrf_token %}<button class="nav-signout">Sign out</button></form>
+{% else %}<a href="{% url 'login' %}">Sign in</a><a class="nav-button" href="{% url 'register' %}">Create account</a>{% endif %}</nav></div></header>
+{% if messages %}<div class="message-container">{% for message in messages %}<div class="message message-{{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="site-footer"><div class="container footer-inner"><div><strong>TravelShield</strong><p>Travel risk, safety and disruption intelligence.</p></div><p>© {% now "Y" %} TravelShield</p></div></footer>
+</body></html>

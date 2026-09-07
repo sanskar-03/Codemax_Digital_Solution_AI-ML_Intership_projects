@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}
+New assessment · TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="shell page-section assessment-page">
+
+    <div class="assessment-intro">
+
+        <div>
+
+            <p class="kicker">
+                NEW TRIP
+            </p>
+
+            <h1>
+                Check your travel plan.
+            </h1>
+
+            <p>
+
+                Fill in your trip details.
+                For the travel condition scores,
+                use 1 for the lowest level
+                and 10 for the highest level.
+
+            </p>
+
+        </div>
+
+
+        <div class="progress-chip">
+
+            <b>
+                Trip check
+            </b>
+
+            <span>
+                Complete the form
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <form
+        method="post"
+        class="assessment-card"
+    >
+
+        {% csrf_token %}
+
+
+        <div class="form-section">
+
+            <div class="section-number">
+                01
+            </div>
+
+
+            <div class="form-heading">
+
+                <h2>
+                    Route & trip
+                </h2>
+
+                <p>
+                    Where are you going and
+                    what does your trip look like?
+                </p>
+
+            </div>
+
+
+            <div class="field-grid">
+
+                <label>
+
+                    {{ form.origin.label }}
+
+                    {{ form.origin }}
+
+                    {% for error in form.origin.errors %}
+
+                        <span class="field-error">
+                            {{ error }}
+                        </span>
+
+                    {% endfor %}
+
+                </label>
+
+
+                <label>
+
+                    {{ form.destination.label }}
+
+                    {{ form.destination }}
+
+                    {% for error in form.destination.errors %}
+
+                        <span class="field-error">
+                            {{ error }}
+                        </span>
+
+                    {% endfor %}
+
+                </label>
+
+
+                <label>
+
+                    {{ form.duration_days.label }}
+
+                    {{ form.duration_days }}
+
+                </label>
+
+
+                <label>
+
+                    {{ form.budget.label }}
+
+                    {{ form.budget }}
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-section">
+
+            <div class="section-number">
+                02
+            </div>
+
+
+            <div class="form-heading">
+
+                <h2>
+                    Travel conditions
+                </h2>
+
+                <p>
+                    Give your best estimate.
+                    These answers help explain
+                    your final risk result.
+                </p>
+
+            </div>
+
+
+            <div class="field-grid">
+
+                <label>
+
+                    {{ form.weather_risk.label }}
+
+                    {{ form.weather_risk }}
+
+                    <small>
+                        {{ form.weather_risk.help_text }}
+                    </small>
+
+                </label>
+
+
+                <label>
+
+                    {{ form.crowd_level.label }}
+
+                    {{ form.crowd_level }}
+
+                    <small>
+                        {{ form.crowd_level.help_text }}
+                    </small>
+
+                </label>
+
+
+                <label>
+
+                    {{ form.transport_reliability.label }}
+
+                    {{ form.transport_reliability }}
+
+                    <small>
+                        {{ form.transport_reliability.help_text }}
+                    </small>
+
+                </label>
+
+
+                <label>
+
+                    {{ form.season.label }}
+
+                    {{ form.season }}
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <div>
+
+                <b>
+                    Ready for your result?
+                </b>
+
+                <span>
+
+                    Your assessment will be saved
+                    in your trip history.
+
+                </span>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="button primary"
+            >
+                Check trip risk →
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}
+TravelShield | Travel Risk Assessment
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                TRAVEL RISK ASSESSMENT
+            </div>
+
+            <h1>
+                Plan with context,
+                <br>
+                not assumptions.
+            </h1>
+
+            <p class="hero-description">
+                TravelShield provides a structured way to assess
+                travel conditions using trip information, weather
+                exposure, crowd pressure, transport reliability
+                and seasonal context.
+            </p>
+
+            <div class="hero-actions">
+
+                {% if user.is_authenticated %}
+
+                    <a
+                        href="{% url 'workspace' %}"
+                        class="button button-primary"
+                    >
+                        Start an assessment
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{% url 'register' %}"
+                        class="button button-primary"
+                    >
+                        Get started
+                    </a>
+
+                    <a
+                        href="{% url 'login' %}"
+                        class="button button-secondary"
+                    >
+                        Sign in
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+            <div class="workflow-label">
+                ASSESSMENT WORKFLOW
+            </div>
+
+            <div class="workflow-step">
+                <span>01</span>
+                <div>
+                    <strong>Trip information</strong>
+                    <p>Define route, duration and travel context.</p>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <span>02</span>
+                <div>
+                    <strong>Risk assessment</strong>
+                    <p>Evaluate the factors affecting the journey.</p>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <span>03</span>
+                <div>
+                    <strong>Model evaluation</strong>
+                    <p>Generate a structured risk result.</p>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <span>04</span>
+                <div>
+                    <strong>Report and history</strong>
+                    <p>Review previous assessments and export results.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section section-light">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <div class="eyebrow">
+                    BUILT FOR A CLEAR WORKFLOW
+                </div>
+
+                <h2>
+                    Everything stays connected.
+                </h2>
+            </div>
+
+            <p>
+                Each assessment follows the same structured process,
+                making results easier to review and compare.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <article class="feature-card">
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <h3>
+                    Structured assessment
+                </h3>
+
+                <p>
+                    Capture consistent trip information and
+                    relevant risk indicators.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <h3>
+                    Versioned model
+                </h3>
+
+                <p>
+                    Keep track of the model version used for
+                    every assessment.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <h3>
+                    Reviewable results
+                </h3>
+
+                <p>
+                    Access assessment history and generate
+                    reports when needed.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container process-layout">
+
+        <div>
+
+            <div class="eyebrow">
+                HOW IT WORKS
+            </div>
+
+            <h2>
+                A simple process from trip details to a clear result.
+            </h2>
+
+        </div>
+
+        <div class="process-list">
+
+            <div class="process-item">
+                <span>1</span>
+                <div>
+                    <h3>Enter trip details</h3>
+                    <p>
+                        Add origin, destination, duration and
+                        other assessment factors.
+                    </p>
+                </div>
+            </div>
+
+            <div class="process-item">
+                <span>2</span>
+                <div>
+                    <h3>Run the assessment</h3>
+                    <p>
+                        The application processes the supplied
+                        information through the active model.
+                    </p>
+                </div>
+            </div>
+
+            <div class="process-item">
+                <span>3</span>
+                <div>
+                    <h3>Review and export</h3>
+                    <p>
+                        Examine the result, confidence information
+                        and available report output.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

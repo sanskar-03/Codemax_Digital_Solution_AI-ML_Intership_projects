@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sign in · TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <p class="kicker">
+            WELCOME BACK
+        </p>
+
+        <h1>
+            Sign in to your trips.
+        </h1>
+
+        <p class="muted-text">
+            Access your travel assessments
+            and continue planning.
+        </p>
+
+
+        <form
+            method="post"
+            class="auth-form"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ next }}"
+            >
+
+
+            <label>
+
+                Username
+
+                <input
+                    class="field-control"
+                    type="text"
+                    name="username"
+                    required
+                    autofocus
+                    autocomplete="username"
+                >
+
+            </label>
+
+
+            <label>
+
+                Password
+
+                <input
+                    class="field-control"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="current-password"
+                >
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="button primary full"
+            >
+                Sign in
+            </button>
+
+        </form>
+
+
+        <p class="auth-switch">
+
+            New to TravelShield?
+
+            <a href="{% url 'register' %}">
+                Create an account
+            </a>
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create account · TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <p class="kicker">
+            GET STARTED
+        </p>
+
+        <h1>
+            Create your account.
+        </h1>
+
+        <p class="muted-text">
+
+            Save assessments and review
+            your travel decisions anytime.
+
+        </p>
+
+
+        <form
+            method="post"
+            class="auth-form"
+            novalidate
+        >
+
+            {% csrf_token %}
+
+
+            {% for field in form %}
+
+                <label>
+
+                    {{ field.label }}
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+
+                        <small>
+                            {{ field.help_text }}
+                        </small>
+
+                    {% endif %}
+
+
+                    {% for error in field.errors %}
+
+                        <span class="field-error">
+                            {{ error }}
+                        </span>
+
+                    {% endfor %}
+
+                </label>
+
+            {% endfor %}
+
+
+            <button
+                type="submit"
+                class="button primary full"
+            >
+                Create account
+            </button>
+
+        </form>
+
+
+        <p class="auth-switch">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Sign in
+            </a>
+
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

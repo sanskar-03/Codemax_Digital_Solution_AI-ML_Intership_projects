@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-intro">
+
+    <div>
+
+        <p class="eyebrow">
+            YOUR TRAVEL OVERVIEW
+        </p>
+
+        <h1>
+            Welcome back.
+        </h1>
+
+        <p>
+            Review your travel assessments or check a new trip.
+        </p>
+
+    </div>
+
+
+    <a href="/workspace/" class="primary-button">
+        Check a new trip
+    </a>
+
+</section>
+
+
+<section class="stats-grid">
+
+    <div class="stat-card">
+
+        <span>
+            Total assessments
+        </span>
+
+        <strong>
+            {{ total_assessments|default:"0" }}
+        </strong>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Higher-risk trips
+        </span>
+
+        <strong>
+            {{ high_risk_count|default:"0" }}
+        </strong>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Current model
+        </span>
+
+        <strong>
+            {{ active_model.version|default:"Not available" }}
+        </strong>
+
+    </div>
+
+</section>
+
+
+<section class="content-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <p class="eyebrow">
+                RECENT ACTIVITY
+            </p>
+
+            <h2>
+                Recent assessments
+            </h2>
+
+        </div>
+
+
+        <a href="/assessments/" class="text-link">
+            View all →
+        </a>
+
+    </div>
+
+
+    {% if recent_assessments %}
+
+        <div class="assessment-list">
+
+            {% for assessment in recent_assessments %}
+
+                <a
+                    href="/assessment/{{ assessment.id }}/"
+                    class="assessment-row"
+                >
+
+                    <div>
+
+                        <strong>
+                            {{ assessment.origin }}
+                            →
+                            {{ assessment.destination }}
+                        </strong>
+
+                        <span>
+                            {{ assessment.duration_days }} days
+                        </span>
+
+                    </div>
+
+
+                    <div class="assessment-risk">
+
+                        <span class="risk-badge risk-{{ assessment.risk_level|lower }}">
+                            {{ assessment.risk_level }}
+                        </span>
+
+                        <strong>
+                            {{ assessment.risk_score|floatformat:0 }}/100
+                        </strong>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <h3>
+                No trips checked yet
+            </h3>
+
+            <p>
+                Start your first assessment to see travel risk information here.
+            </p>
+
+            <a href="/workspace/" class="primary-button">
+                Check my first trip
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard · TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-hero">
+
+    <div class="shell hero-row">
+
+        <div>
+
+            <p class="kicker">
+                TRAVEL DASHBOARD
+            </p>
+
+            <h1>
+                Plan with confidence.
+            </h1>
+
+            <p>
+
+                Assess upcoming journeys,
+                understand important risk signals
+                and keep every travel decision
+                in one place.
+
+            </p>
+
+        </div>
+
+
+        <a
+            href="{% url 'workspace' %}"
+            class="button primary"
+        >
+            + New trip assessment
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="shell page-section">
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span>
+                ASSESSMENTS
+            </span>
+
+            <strong>
+                {{ total }}
+            </strong>
+
+            <small>
+                Trips evaluated
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                HIGH-RISK TRIPS
+            </span>
+
+            <strong>
+                {{ high }}
+            </strong>
+
+            <small>
+                Need closer attention
+            </small>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <span>
+                ACTIVE MODEL
+            </span>
+
+            <strong>
+
+                {% if active_model %}
+
+                    {{ active_model.version }}
+
+                {% else %}
+
+                    —
+
+                {% endif %}
+
+            </strong>
+
+            <small>
+                Current prediction version
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="section-line">
+
+        <div>
+
+            <p class="kicker">
+                RECENT ACTIVITY
+            </p>
+
+            <h2>
+                Your latest assessments
+            </h2>
+
+        </div>
+
+
+        <a href="{% url 'assessment_history' %}">
+            View all trips →
+        </a>
+
+    </div>
+
+
+    {% if recent %}
+
+        <div class="trip-list">
+
+            {% for item in recent %}
+
+                <a
+                    class="trip-row"
+                    href="{% url 'assessment_detail' item.id %}"
+                >
+
+                    <div>
+
+                        <strong>
+
+                            {{ item.origin }}
+                            →
+                            {{ item.destination }}
+
+                        </strong>
+
+                        <small>
+
+                            {{ item.duration_days }} days
+                            ·
+                            {{ item.created_at|date:"d M Y" }}
+
+                        </small>
+
+                    </div>
+
+
+                    <div class="trip-meta">
+
+                        <span
+                            class="risk {{ item.risk_level|lower }}"
+                        >
+                            {{ item.risk_level }}
+                        </span>
+
+                        <b>
+                            {{ item.risk_score|floatformat:0 }}/100
+                        </b>
+
+                    </div>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                ✦
+            </div>
+
+            <h3>
+                No trip assessments yet
+            </h3>
+
+            <p>
+
+                Start with your destination.
+                TravelShield will turn your
+                trip details into a clear risk picture.
+
+            </p>
+
+            <a
+                href="{% url 'workspace' %}"
+                class="button primary"
+            >
+                Assess my first trip
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

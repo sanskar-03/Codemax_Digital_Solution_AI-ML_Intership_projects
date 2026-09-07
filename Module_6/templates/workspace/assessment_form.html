@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}
+Check your trip | TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="form-page">
+
+    <div class="form-page-header">
+
+        <p class="eyebrow">
+            TRIP ASSESSMENT
+        </p>
+
+        <h1>
+            Tell us about your trip.
+        </h1>
+
+        <p>
+            Add a few details about your journey.
+            We'll turn them into a clear travel risk assessment.
+        </p>
+
+    </div>
+
+
+    <form method="post" class="assessment-form">
+
+        {% csrf_token %}
+
+
+        <section class="form-section">
+
+            <div class="form-section-heading">
+
+                <div class="section-count">
+                    1
+                </div>
+
+                <div>
+
+                    <h2>
+                        Your trip
+                    </h2>
+
+                    <p>
+                        Basic information about where and how you are travelling.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="field-group">
+
+                    <label for="{{ form.origin.id_for_label }}">
+                        Where are you travelling from?
+                    </label>
+
+                    {{ form.origin }}
+
+                    <small>
+                        Example: Delhi
+                    </small>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="{{ form.destination.id_for_label }}">
+                        Where are you travelling to?
+                    </label>
+
+                    {{ form.destination }}
+
+                    <small>
+                        Example: Manali
+                    </small>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="{{ form.duration_days.id_for_label }}">
+                        How many days is your trip?
+                    </label>
+
+                    {{ form.duration_days }}
+
+                    <small>
+                        Example: 5
+                    </small>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="{{ form.budget.id_for_label }}">
+                        Approximate trip budget
+                    </label>
+
+                    {{ form.budget }}
+
+                    <small>
+                        Example: 40000
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="form-section">
+
+            <div class="form-section-heading">
+
+                <div class="section-count">
+                    2
+                </div>
+
+                <div>
+
+                    <h2>
+                        Expected travel conditions
+                    </h2>
+
+                    <p>
+                        Give a simple estimate based on what you expect during your journey.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="field-group">
+
+                    <label for="{{ form.weather_risk.id_for_label }}">
+                        How challenging might the weather be?
+                    </label>
+
+                    {{ form.weather_risk }}
+
+                    <small>
+                        1 means very low impact. 10 means severe conditions.
+                    </small>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="{{ form.crowd_level.id_for_label }}">
+                        How crowded do you expect the destination to be?
+                    </label>
+
+                    {{ form.crowd_level }}
+
+                    <small>
+                        1 means quiet. 10 means extremely crowded.
+                    </small>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="{{ form.transport_reliability.id_for_label }}">
+                        How reliable is your transportation?
+                    </label>
+
+                    {{ form.transport_reliability }}
+
+                    <small>
+                        Use 1 for poor reliability and 10 for very reliable transport.
+                    </small>
+
+                </div>
+
+
+                <div class="field-group">
+
+                    <label for="{{ form.season.id_for_label }}">
+                        When are you travelling?
+                    </label>
+
+                    {{ form.season }}
+
+                    <small>
+                        Choose the season that best matches your trip.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {% if form.errors %}
+
+            <div class="form-errors">
+
+                <strong>
+                    Please correct the highlighted information.
+                </strong>
+
+                {{ form.errors }}
+
+            </div>
+
+        {% endif %}
+
+
+        <div class="form-actions">
+
+            <a href="/dashboard/" class="secondary-button">
+                Cancel
+            </a>
+
+            <button type="submit" class="primary-button">
+                Check my trip
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+{% endblock %}

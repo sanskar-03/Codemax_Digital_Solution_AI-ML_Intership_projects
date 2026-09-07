@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block brand %}TravelShield{% endblock %}
+{% block section %}Assessment record{% endblock %}
+
+{% block content %}
+
+<h1>
+    {{ assessment.origin }}
+    →
+    {{ assessment.destination }}
+</h1>
+
+<div class="grid">
+
+    <div class="card">
+        Risk score
+        <span class="metric">
+            {{ assessment.risk_score }}
+        </span>
+
+        <span class="tag">
+            {{ assessment.risk_level }}
+        </span>
+    </div>
+
+    <div class="card">
+        Confidence
+        <span class="metric">
+            {{ assessment.confidence }}%
+        </span>
+    </div>
+
+    <div class="card">
+        Model version
+        <span class="metric">
+            {{ assessment.model_version.version }}
+        </span>
+    </div>
+
+</div>
+
+<section class="panel">
+    <h2>Assessment factors</h2>
+
+    {% for factor in assessment.explanation.factors %}
+        <p>
+            {{ factor.name }}
+
+            <span class="tag">
+                {{ factor.value }}
+            </span>
+        </p>
+    {% endfor %}
+
+    <br>
+
+    <a class="button"
+       href="/assessment/{{ assessment.id }}/report/">
+        Export PDF report
+    </a>
+</section>
+
+{% endblock %}

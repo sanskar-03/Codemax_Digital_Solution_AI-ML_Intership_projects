@@ -1,0 +1,8 @@
+{% load static %}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}TravelShield{% endblock %}</title><link rel="stylesheet" href="{% static 'app.css' %}"></head>
+<body class="{% if user.is_authenticated %}app{% else %}public{% endif %}">
+{% if user.is_authenticated %}<aside class="sidebar"><a class="brand" href="{% url 'home' %}">TravelShield<small>TRAVEL RISK INTELLIGENCE</small></a><nav>
+<a href="{% url 'home' %}">Dashboard</a><a href="{% url 'workspace' %}">New assessment</a><a href="{% url 'assessment_history' %}">Assessment history</a><a href="{% url 'api_assessments' %}">REST API</a>
+{% if user.is_staff %}<a href="/admin/">Administration</a>{% endif %}<a href="{% url 'logout' %}">Sign out</a></nav></aside>{% endif %}
+<main>{% block content %}{% endblock %}</main></body></html>

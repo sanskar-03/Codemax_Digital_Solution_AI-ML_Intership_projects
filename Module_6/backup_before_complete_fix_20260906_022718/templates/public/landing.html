@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}
+TravelShield | Plan your trip with confidence
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="eyebrow">
+            TRAVEL PLANNING MADE CLEARER
+        </p>
+
+        <h1>
+            Plan your trip
+            <span>with confidence.</span>
+        </h1>
+
+        <p class="hero-text">
+
+            TravelShield helps you understand possible weather,
+            transport and crowd-related risks before you travel.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+            {% if user.is_authenticated %}
+
+                <a href="/workspace/" class="primary-button">
+                    Check my trip
+                </a>
+
+                <a href="/dashboard/" class="secondary-button">
+                    View dashboard
+                </a>
+
+            {% else %}
+
+                <a href="/accounts/register/" class="primary-button">
+                    Get started
+                </a>
+
+                <a href="/accounts/login/" class="secondary-button">
+                    Sign in
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="trip-preview-header">
+            <span>Example trip</span>
+            <span class="status status-medium">
+                Moderate
+            </span>
+        </div>
+
+        <div class="trip-route">
+
+            <div>
+                <small>FROM</small>
+                <strong>Delhi</strong>
+            </div>
+
+            <div class="route-arrow">
+                →
+            </div>
+
+            <div>
+                <small>TO</small>
+                <strong>Manali</strong>
+            </div>
+
+        </div>
+
+        <div class="preview-score">
+
+            <div class="score-circle">
+                52
+            </div>
+
+            <div>
+
+                <strong>Trip risk score</strong>
+
+                <p>
+                    Some conditions may require extra planning.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="how-it-works">
+
+    <div class="section-heading">
+
+        <p class="eyebrow">
+            HOW IT WORKS
+        </p>
+
+        <h2>
+            Three simple steps
+        </h2>
+
+    </div>
+
+
+    <div class="steps-grid">
+
+        <article class="info-card">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <h3>
+                Tell us about your trip
+            </h3>
+
+            <p>
+                Add your route, travel duration,
+                budget and expected conditions.
+            </p>
+
+        </article>
+
+
+        <article class="info-card">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <h3>
+                We assess possible risks
+            </h3>
+
+            <p>
+                Your trip information is evaluated
+                using the available risk model.
+            </p>
+
+        </article>
+
+
+        <article class="info-card">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <h3>
+                Get a clear recommendation
+            </h3>
+
+            <p>
+                See your overall trip score,
+                important risk signals and planning advice.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="feature-section">
+
+    <div>
+
+        <p class="eyebrow">
+            WHAT WE CHECK
+        </p>
+
+        <h2>
+            The important parts of your journey.
+        </h2>
+
+    </div>
+
+
+    <div class="feature-list">
+
+        <div class="feature-item">
+
+            <strong>Weather conditions</strong>
+
+            <p>
+                Understand how expected weather may affect your journey.
+            </p>
+
+        </div>
+
+
+        <div class="feature-item">
+
+            <strong>Destination crowding</strong>
+
+            <p>
+                Consider how busy conditions could affect your experience.
+            </p>
+
+        </div>
+
+
+        <div class="feature-item">
+
+            <strong>Transport reliability</strong>
+
+            <p>
+                Identify possible disruption or uncertainty during travel.
+            </p>
+
+        </div>
+
+
+        <div class="feature-item">
+
+            <strong>Trip context</strong>
+
+            <p>
+                Duration, budget and season are considered as part of the assessment.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

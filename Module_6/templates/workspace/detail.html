@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}
+Trip result · TravelShield
+{% endblock %}
+
+
+{% block content %}
+
+<section class="shell page-section result-page">
+
+
+    <div class="result-header">
+
+        <div>
+
+            <a
+                class="back-link"
+                href="{% url 'assessment_history' %}"
+            >
+                ← Back to my trips
+            </a>
+
+
+            <p class="kicker">
+                TRIP ASSESSMENT
+            </p>
+
+
+            <h1>
+
+                {{ assessment.origin }}
+                →
+                {{ assessment.destination }}
+
+            </h1>
+
+
+            <p>
+
+                {{ assessment.duration_days }} days
+                ·
+                ₹{{ assessment.budget }}
+                ·
+                {{ assessment.season|title }}
+
+            </p>
+
+        </div>
+
+
+        <div class="result-actions">
+
+            <a
+                href="{% url 'assessment_pdf' assessment.id %}"
+                class="button secondary"
+            >
+                Download report
+            </a>
+
+
+            <a
+                href="{% url 'workspace' %}"
+                class="button primary"
+            >
+                New assessment
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="result-grid">
+
+
+        <article class="score-card">
+
+            <small>
+                OVERALL TRIP RISK
+            </small>
+
+
+            <strong>
+
+                {{ assessment.risk_score|floatformat:0 }}
+
+                <span>
+                    /100
+                </span>
+
+            </strong>
+
+
+            <span
+                class="risk {{ assessment.risk_level|lower }}"
+            >
+
+                {{ assessment.risk_level }}
+                RISK
+
+            </span>
+
+
+            <p>
+
+                Model confidence:
+                {{ assessment.confidence|floatformat:1 }}%
+
+            </p>
+
+        </article>
+
+
+        <article class="decision-card">
+
+            <p class="kicker">
+                WHAT THIS MEANS
+            </p>
+
+
+            <h2>
+
+                {% if assessment.risk_level == "HIGH" %}
+
+                    Review the plan before departure.
+
+                {% elif assessment.risk_level == "MEDIUM" %}
+
+                    Travel is possible with preparation.
+
+                {% else %}
+
+                    Conditions look favourable.
+
+                {% endif %}
+
+            </h2>
+
+
+            <p>
+
+                {% if assessment.risk_level == "HIGH" %}
+
+                    Focus on the strongest risk signals.
+                    Consider changing timing, transport
+                    or travel conditions.
+
+                {% elif assessment.risk_level == "MEDIUM" %}
+
+                    Reduce avoidable pressure points,
+                    check your transport options
+                    and keep flexibility in the itinerary.
+
+                {% else %}
+
+                    Continue monitoring travel conditions
+                    and keep normal contingency plans.
+
+                {% endif %}
+
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <section class="panel">
+
+        <div class="section-line">
+
+            <div>
+
+                <p class="kicker">
+                    RISK SIGNALS
+                </p>
+
+                <h2>
+                    What influenced this result
+                </h2>
+
+                <p>
+                    A longer bar means that factor
+                    contributed more strongly to the
+                    overall travel risk.
+                </p>
+
+            </div>
+
+
+            <span class="model-pill">
+
+                Model
+
+                {% if assessment.model_version %}
+
+                    {{ assessment.model_version.version }}
+
+                {% else %}
+
+                    —
+
+                {% endif %}
+
+            </span>
+
+        </div>
+
+
+        <div class="factor-list">
+
+            {% for factor in assessment.explanation.factors %}
+
+                <div class="factor">
+
+                    <div class="factor-name">
+
+                        <strong>
+                            {{ factor.name }}
+                        </strong>
+
+                        <span>
+                            {{ factor.value|floatformat:0 }}/100
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <i
+                            style="width:{{ factor.value }}%"
+                        ></i>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <p>
+                    No detailed factor explanation
+                    was stored for this assessment.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    {% if assessment.explanation.probabilities %}
+
+        <section class="panel probability-panel">
+
+            <p class="kicker">
+                MODEL OUTLOOK
+            </p>
+
+            <h2>
+                Risk probability distribution
+            </h2>
+
+
+            <div class="probability-grid">
+
+                {% for label, value in assessment.explanation.probabilities.items %}
+
+                    <div>
+
+                        <span>
+                            {{ label|title }}
+                        </span>
+
+                        <strong>
+                            {{ value|floatformat:1 }}%
+                        </strong>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
